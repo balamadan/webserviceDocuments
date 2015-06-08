@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56" id="RegistrationPagePageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="RegistrationPageVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="RegistrationPageVOIterator"/>
+    <iterator Binds="RegLinesRegPageVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="RegLinesRegPageVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="RegistrationPageVOIterator"
+                     id="RegistrationId">
+      <AttrNames>
+        <Item Value="RegistrationId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RegistrationPageVOIterator" id="RegNum">
+      <AttrNames>
+        <Item Value="RegNum"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RegistrationPageVOIterator" id="ProcType"
+          DTSupportsMRU="true" StaticList="true">
+      <AttrNames>
+        <Item Value="ProcType"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Standard Procurement"/>
+        <Item Value="Emergency"/>
+        <Item Value="Reimbursable Procurement"/>
+      </ValueList>
+    </list>
+    <list IterBinding="RegistrationPageVOIterator" id="RegStatus"
+          DTSupportsMRU="true" StaticList="true">
+      <AttrNames>
+        <Item Value="RegStatus"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Open"/>
+        <Item Value="Closed"/>
+      </ValueList>
+    </list>
+    <attributeValues IterBinding="RegistrationPageVOIterator" id="TotalUsdAmt">
+      <AttrNames>
+        <Item Value="TotalUsdAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RegistrationPageVOIterator" id="TotalPfiAmt">
+      <AttrNames>
+        <Item Value="TotalPfiAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RegistrationPageVOIterator"
+                     id="CreatedByName">
+      <AttrNames>
+        <Item Value="CreatedByName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RegistrationPageVOIterator" id="CreationDate">
+      <AttrNames>
+        <Item Value="CreationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RegistrationPageVOIterator" StaticList="false"
+          Uses="LOV_RequestedBy" id="RequestedBy" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="RegistrationPageVOIterator"
+                     id="DepartmentName">
+      <AttrNames>
+        <Item Value="DepartmentName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RegistrationPageVOIterator" id="NotesBuyer">
+      <AttrNames>
+        <Item Value="NotesBuyer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RegistrationPageVOIterator" id="PartyNotes">
+      <AttrNames>
+        <Item Value="PartyNotes"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RegLinesRegPageVOIterator" id="RegLinesRegPageVO">
+      <nodeDefinition DefName="model.view.RegistrationLinesVO">
+        <AttrNames>
+          <Item Value="ProductCode"/>
+          <Item Value="Qty"/>
+          <Item Value="UnitPrice"/>
+          <Item Value="Currency"/>
+          <Item Value="UsdAmount"/>
+          <Item Value="UsdPfiAmount"/>
+          <Item Value="UsdTotalAmount"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MyLearningAMDataControl"/>
+  </bindings>
+</pageDefinition>

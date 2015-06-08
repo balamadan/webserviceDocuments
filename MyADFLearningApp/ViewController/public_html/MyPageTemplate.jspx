@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=windows-1252"/>
+  <af:pageTemplateDef var="attrs">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>
+          MyPageTemplate
+        </display-name>
+        <facet>
+          <description>
+            Main region of the page where all contents will reside
+          </description>
+          <facet-name>
+            MainPageRegion
+          </facet-name>
+        </facet>
+        <facet>
+          <description>
+            Region to put the Action buttons
+          </description>
+          <facet-name>
+            ActionButtonBarRegion
+          </facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>
+            PageTitle
+          </attribute-name>
+          <attribute-class>
+            java.lang.String
+          </attribute-class>
+          <default-value>
+            Page Title
+          </default-value>
+          <required>
+            true
+          </required>
+        </attribute>
+      </component>
+    </af:xmlContent>
+    <af:panelStretchLayout startWidth="0px" endWidth="0px" topHeight="93px">
+      <f:facet name="bottom">
+        <af:panelGroupLayout halign="right" valign="top" layout="vertical">
+          <af:facetRef facetName="ActionButtonBarRegion"/>
+          <f:facet name="separator"/>
+        </af:panelGroupLayout>
+      </f:facet>
+      <f:facet name="center">
+        <af:panelStretchLayout startWidth="0px" endWidth="0px" topHeight="0px"
+                               bottomHeight="0px">
+          <f:facet name="bottom"/>
+          <f:facet name="center">
+            <af:panelGroupLayout layout="scroll"
+                                 xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+              <af:separator/>
+              <af:facetRef facetName="MainPageRegion"/>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="start"/>
+          <f:facet name="end"/>
+          <f:facet name="top"/>
+        </af:panelStretchLayout>
+      </f:facet>
+      <f:facet name="start"/>
+      <f:facet name="end"/>
+      <f:facet name="top">
+        <af:panelGroupLayout>
+          <af:image shortDesc="MyProcLogo"
+                    source="/MyProcLogo.JPG"
+                    inlineStyle="width:10%; height:100%; vertical-align:top;"/>
+          <af:outputText value="My Procurment Application"
+                         inlineStyle="font-size:medium; font-weight:bold; color:Maroon; vertical-align:bottom;"/>
+          <f:facet name="separator"/>
+          <af:spacer width="150" height="10"/>
+          <af:outputText value="#{attrs.PageTitle}" rendered="true"
+                         inlineStyle="font-weight:bold; font-size:small; vertical-align:text-bottom; color:Maroon;"/>
+        </af:panelGroupLayout>
+      </f:facet>
+    </af:panelStretchLayout>
+  </af:pageTemplateDef>
+</jsp:root>

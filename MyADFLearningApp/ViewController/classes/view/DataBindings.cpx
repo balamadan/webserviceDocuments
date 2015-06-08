@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.51.56" id="DataBindings" SeparateXMLFiles="false"
+             Package="view" ClientType="Generic">
+  <pageMap>
+    <page path="/CatalogeCategoryPage.jspx"
+          usageId="view_CatalogeCategoryPagePageDef"/>
+    <page path="/ItemListPage.jspx" usageId="view_ItemListPagePageDef"/>
+    <page path="/RegistrationPage.jspx" usageId="view_RegistrationPagePageDef"/>
+    <page path="/WEB-INF/Edit-Registration.xml#Edit-Registration@CreateNewRegistration"
+          usageId="view_Edit_Registration_Edit_Registration_methodCall1PageDef"/>
+    <page path="/WEB-INF/Edit-Registration.xml#Edit-Registration@FindRegistration"
+          usageId="view_Edit_Registration_Edit_Registration_FindRegistrationPageDef"/>
+    <page path="/HomePage.jspx" usageId="view_HomePagePageDef"/>
+    <page path="/ItemDetailsPage.jspx" usageId="view_ItemDetailsPagePageDef"/>
+    <page path="PageFlow#initilizeNewRegLines"
+          usageId="view_adfc_config___initilizeNewRegLinesPageDef"/>
+    <page path="PageFlow#CreateNewLine"
+          usageId="view_adfc_config___CreateNewLinePageDef"/>
+    <page path="PageFlow#ExecuteRegLines"
+          usageId="view_adfc_config___ExecutePageDef"/>
+    <page path="/WEB-INF/Edit-Registration.xml#Edit-Registration@updateRegLinesAmt"
+          usageId="view_Edit_Registration_Edit_Registration_updateRegLinesAmtPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_CatalogeCategoryPagePageDef"
+          path="view.pageDefs.CatalogeCategoryPagePageDef"/>
+    <page id="view_ItemListPagePageDef"
+          path="view.pageDefs.ItemListPagePageDef"/>
+    <page id="view_RegistrationPagePageDef"
+          path="view.pageDefs.RegistrationPagePageDef"/>
+    <page id="view_Edit_Registration_Edit_Registration_methodCall1PageDef"
+          path="view.pageDefs.Edit_Registration_Edit_Registration_methodCall1PageDef"/>
+    <page id="view_Edit_Registration_Edit_Registration_FindRegistrationPageDef"
+          path="view.pageDefs.Edit_Registration_Edit_Registration_FindRegistrationPageDef"/>
+    <page id="view_HomePagePageDef" path="view.pageDefs.HomePagePageDef"/>
+    <page id="view_ItemDetailsPagePageDef"
+          path="view.pageDefs.ItemDetailsPagePageDef"/>
+    <page id="view_adfc_config___initilizeNewRegLinesPageDef"
+          path="view.pageDefs.adfc_config___initilizeNewRegLinesPageDef"/>
+    <page id="view_adfc_config___CreateNewLinePageDef"
+          path="view.pageDefs.adfc_config___CreateNewLinePageDef"/>
+    <page id="view_adfc_config___ExecutePageDef"
+          path="view.pageDefs.adfc_config___ExecutePageDef"/>
+    <page id="view_Edit_Registration_Edit_Registration_updateRegLinesAmtPageDef"
+          path="view.pageDefs.Edit_Registration_Edit_Registration_updateRegLinesAmtPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="MyLearningAMDataControl" Package="model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="MyLearningAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="ProcurmentAppModuleDataControl" Package="model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="ProcurmentAppModuleLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

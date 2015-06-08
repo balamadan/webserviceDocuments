@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HomePageVL"
+  Version="11.1.1.51.56">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewLinkDefEnd
+    Name="SearchPageRegistrationVO"
+    Cardinality="1"
+    Owner="model.view.SearchPageRegistrationVO"
+    Source="true">
+    <DesignTime>
+      <Attr Name="_finderName" Value="SearchPageRegistrationVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.view.SearchPageRegistrationVO.RegistrationId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="SearchPageRegistrationLinesVO"
+    Cardinality="-1"
+    Owner="model.view.SearchPageRegistrationLinesVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="SearchPageRegistrationLinesVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.view.SearchPageRegistrationLinesVO.RegistrationId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

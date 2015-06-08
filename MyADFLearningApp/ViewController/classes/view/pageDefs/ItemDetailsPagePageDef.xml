@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56" id="ItemDetailsPagePageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="ItemDetailsPageVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="ItemDetailsPageVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="ItemDetailsPageVOIterator" id="RegNum">
+      <AttrNames>
+        <Item Value="RegNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ItemDetailsPageVOIterator" id="ProductCode">
+      <AttrNames>
+        <Item Value="ProductCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ItemDetailsPageVOIterator" id="Qty">
+      <AttrNames>
+        <Item Value="Qty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ItemDetailsPageVOIterator" id="UnitPrice">
+      <AttrNames>
+        <Item Value="UnitPrice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ItemDetailsPageVOIterator" id="Uom">
+      <AttrNames>
+        <Item Value="Uom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ItemDetailsPageVOIterator" id="Currency">
+      <AttrNames>
+        <Item Value="Currency"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ItemDetailsPageVOIterator" id="Descr">
+      <AttrNames>
+        <Item Value="Descr"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="MyLearningAMDataControl"/>
+  </bindings>
+</pageDefinition>

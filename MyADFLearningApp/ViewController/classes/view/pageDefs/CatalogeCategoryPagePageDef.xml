@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56" id="CatalogeCategoryPagePageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="CatalogPageVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl" id="CatalogPageVOIterator"/>
+    <iterator Binds="CatalogueCategoryItemVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="CatalogueCategoryItemVOIterator" Refresh="ifNeeded"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CatalogPageVOIterator" id="CatalogPageVO">
+      <nodeDefinition DefName="model.view.CatalogVO">
+        <AttrNames>
+          <Item Value="CatalogueName"/>
+          <Item Value="Descrr"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CategoryVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="model.view.CategoryVO">
+        <AttrNames>
+          <Item Value="CategoryName"/>
+          <Item Value="Descr"/>   
+          <Item Value="CategoryId"/>   
+        </AttrNames>
+      </nodeDefinition>
+    </tree>    
+    <tree IterBinding="CatalogueCategoryItemVOIterator"
+          id="CatalogueCategoryItemVO">
+      <nodeDefinition DefName="model.view.ItemListPageVO">
+        <AttrNames>
+          <Item Value="ProductCode"/>
+          <Item Value="Uom"/>
+          <Item Value="UnitPrice"/>
+          <Item Value="Currency"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getItemInCategory" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getItemInCategory"
+                  IsViewObjectMethod="false"
+                  DataControl="MyLearningAMDataControl"
+                  InstanceName="MyLearningAMDataControl.dataProvider">
+      <NamedData NDName="CategoryId" NDValue="#{detailRow.CategoryId}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

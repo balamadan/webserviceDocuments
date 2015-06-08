@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=windows-1252"/>
+  <f:view>
+    <af:document title="Registration Page">
+      <af:messages/>
+      <af:form>
+        <af:pageTemplate viewId="/MyPageTemplate.jspx">
+          <f:facet name="MainPageRegion">
+            <af:group>
+              <af:panelSplitter splitterPosition="454"
+                                inlineStyle="width:943px; height:200px;"
+                                id="FirstRN">
+                <f:facet name="first">
+                  <af:panelGroupLayout layout="scroll">
+                    <af:outputText value="Registration Details"
+                                   inlineStyle="font-weight:bold;"/>
+                    <af:separator/>
+                    <af:panelFormLayout labelAlignment="start">
+                      <f:facet name="footer"/>
+                      <af:panelLabelAndMessage label="#{bindings.RegNum.hints.label}">
+                        <af:outputText value="#{bindings.RegNum.inputValue}"/>
+                      </af:panelLabelAndMessage>
+                      <af:selectOneChoice value="#{bindings.ProcType.inputValue}"
+                                          label="#{bindings.ProcType.label}"
+                                          required="#{bindings.ProcType.hints.mandatory}"
+                                          shortDesc="#{bindings.ProcType.hints.tooltip}">
+                        <f:selectItems value="#{bindings.ProcType.items}"/>
+                      </af:selectOneChoice>
+                      <af:selectOneChoice value="#{bindings.RegStatus.inputValue}"
+                                          label="#{bindings.RegStatus.label}"
+                                          required="#{bindings.RegStatus.hints.mandatory}"
+                                          shortDesc="#{bindings.RegStatus.hints.tooltip}">
+                        <f:selectItems value="#{bindings.RegStatus.items}"/>
+                      </af:selectOneChoice>
+                      <af:panelLabelAndMessage label="#{bindings.TotalUsdAmt.hints.label}">
+                        <af:outputText value="#{bindings.TotalUsdAmt.inputValue}">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.TotalUsdAmt.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.TotalPfiAmt.hints.label}">
+                        <af:outputText value="#{bindings.TotalPfiAmt.inputValue}">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.TotalPfiAmt.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                  </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                  <af:panelGroupLayout layout="scroll"
+                                       xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+                    <af:outputText value="Creation Details"
+                                   inlineStyle="font-weight:bold;"/>
+                    <af:separator/>
+                    <af:panelFormLayout labelAlignment="start">
+                      <f:facet name="footer"/>
+                      <af:panelLabelAndMessage label="#{bindings.CreatedByName.hints.label}">
+                        <af:outputText value="#{bindings.CreatedByName.inputValue}"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.CreationDate.hints.label}">
+                        <af:outputText value="#{bindings.CreationDate.inputValue}">
+                          <af:convertDateTime pattern="#{bindings.CreationDate.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:selectOneChoice value="#{bindings.RequestedBy.inputValue}"
+                                          label="#{bindings.RequestedBy.label}"
+                                          required="#{bindings.RequestedBy.hints.mandatory}"
+                                          shortDesc="#{bindings.RequestedBy.hints.tooltip}">
+                        <f:selectItems value="#{bindings.RequestedBy.items}"/>
+                      </af:selectOneChoice>
+                      <af:panelLabelAndMessage label="#{bindings.DepartmentName.hints.label}">
+                        <af:outputText value="#{bindings.DepartmentName.inputValue}"/>
+                      </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                  </af:panelGroupLayout>
+                </f:facet>
+              </af:panelSplitter>
+              <af:panelSplitter inlineStyle="width:944px; height:132px;"
+                                splitterPosition="452" id="SecondRN">
+                <f:facet name="first">
+                  <af:panelGroupLayout layout="scroll"
+                                       xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+                    <af:outputText value="Notes to Buyer"
+                                   inlineStyle="font-weight:bold;"/>
+                    <af:separator/>
+                    <af:inputText value="#{bindings.NotesBuyer.inputValue}"
+                                  simple="true"
+                                  required="#{bindings.NotesBuyer.hints.mandatory}"
+                                  columns="#{bindings.NotesBuyer.hints.displayWidth}"
+                                  maximumLength="#{bindings.NotesBuyer.hints.precision}"
+                                  shortDesc="#{bindings.NotesBuyer.hints.tooltip}"
+                                  rows="5">
+                      <f:validator binding="#{bindings.NotesBuyer.validator}"/>
+                    </af:inputText>
+                  </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                  <af:panelGroupLayout layout="scroll"
+                                       xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+                    <af:outputText value="Party Notes"
+                                   inlineStyle="font-weight:bold;"/>
+                    <af:separator/>
+                    <af:inputText value="#{bindings.PartyNotes.inputValue}"
+                                  simple="true"
+                                  required="#{bindings.PartyNotes.hints.mandatory}"
+                                  columns="#{bindings.PartyNotes.hints.displayWidth}"
+                                  maximumLength="#{bindings.PartyNotes.hints.precision}"
+                                  shortDesc="#{bindings.PartyNotes.hints.tooltip}"
+                                  rows="5">
+                      <f:validator binding="#{bindings.PartyNotes.validator}"/>
+                    </af:inputText>
+                  </af:panelGroupLayout>
+                </f:facet>
+              </af:panelSplitter>
+              <af:spacer width="10" height="20"/>
+              <af:outputText value="Registration Lines"
+                             inlineStyle="font-weight:bold;"/>
+              <af:separator/>
+              <af:commandButton text="Add Item"
+                                disabled="#{RegistrationBean.disableAddItemBtn}"
+                                action="CatalogPage"/>
+              <af:commandButton text="Search Item"
+                                action="ItemLitsPage"
+                                disabled="#{RegistrationBean.disableSearchCataBtn}"/>
+              <af:table value="#{bindings.RegLinesRegPageVO.collectionModel}"
+                        var="row" rows="#{bindings.RegLinesRegPageVO.rangeSize}"
+                        emptyText="#{bindings.RegLinesRegPageVO.viewable ? 'No rows yet.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.RegLinesRegPageVO.rangeSize}"
+                        width="900">
+                <af:column sortProperty="ProductCode" sortable="false"
+                           headerText="#{bindings.RegLinesRegPageVO.hints.ProductCode.label}">
+                  <af:outputText value="#{row.ProductCode}"/>
+                </af:column>
+                <af:column sortProperty="Qty" sortable="false"
+                           headerText="#{bindings.RegLinesRegPageVO.hints.Qty.label}">
+                  <af:outputText value="#{row.Qty}">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.RegLinesRegPageVO.hints.Qty.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="UnitPrice" sortable="false"
+                           headerText="#{bindings.RegLinesRegPageVO.hints.UnitPrice.label}">
+                  <af:outputText value="#{row.UnitPrice}">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.RegLinesRegPageVO.hints.UnitPrice.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="Currency" sortable="false"
+                           headerText="#{bindings.RegLinesRegPageVO.hints.Currency.label}">
+                  <af:outputText value="#{row.Currency}"/>
+                </af:column>
+                <af:column sortProperty="UsdAmount" sortable="false"
+                           headerText="#{bindings.RegLinesRegPageVO.hints.UsdAmount.label}">
+                  <af:outputText value="#{row.UsdAmount}">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.RegLinesRegPageVO.hints.UsdAmount.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="UsdPfiAmount" sortable="false"
+                           headerText="#{bindings.RegLinesRegPageVO.hints.UsdPfiAmount.label}">
+                  <af:outputText value="#{row.UsdPfiAmount}">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.RegLinesRegPageVO.hints.UsdPfiAmount.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="UsdTotalAmount" sortable="false"
+                           headerText="#{bindings.RegLinesRegPageVO.hints.UsdTotalAmount.label}">
+                  <af:outputText value="#{row.UsdTotalAmount}">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.RegLinesRegPageVO.hints.UsdTotalAmount.format}"/>
+                  </af:outputText>
+                </af:column>
+              </af:table>
+            </af:group>
+          </f:facet>
+          <f:facet name="ActionButtonBarRegion">
+            <af:group>
+              <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                text="Save"
+                                disabled="false">
+                <af:setActionListener from="#{false}"
+                                      to="#{RegistrationBean.disableAddItemBtn}"/>
+                <af:setActionListener from="#{false}"
+                                      to="#{RegistrationBean.disableSearchCataBtn}"/>
+                <af:setActionListener from="#{bindings.RegistrationId.inputValue}"
+                                      to="#{pageFlowScope.regToEdit}"/>
+              </af:commandButton>
+              <af:commandButton text="Home" action="HomePage" immediate="true"/>
+            </af:group>
+          </f:facet>
+          <f:attribute name="PageTitle" value="Registration Page"/>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

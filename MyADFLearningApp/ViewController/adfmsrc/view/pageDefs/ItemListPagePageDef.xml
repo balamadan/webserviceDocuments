@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56" id="ItemListPagePageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="ItemListPageVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="ItemListPageVOIterator"/>
+    <searchRegion Criteria="ItemListPageVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="ItemListPageVOIterator"
+                  id="ItemListPageVOCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ItemListPageVOIterator" id="ItemListPageVO">
+      <nodeDefinition DefName="model.view.ItemListPageVO">
+        <AttrNames>
+          <Item Value="CatalogueName"/>
+          <Item Value="Descrr"/>
+          <Item Value="CategoryName"/>
+          <Item Value="Descr"/>
+          <Item Value="ProductCode"/>
+          <Item Value="Descr1"/>
+          <Item Value="UnitPrice"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

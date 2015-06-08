@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56" id="adfc_config___CreateNewLinePageDef"
+                Package="view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="ItemDetailsPageVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="ItemDetailsPageVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="ItemDetailsPageVOIterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

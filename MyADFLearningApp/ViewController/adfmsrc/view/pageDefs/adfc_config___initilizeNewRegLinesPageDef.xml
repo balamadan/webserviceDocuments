@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56"
+                id="adfc_config___initilizeNewRegLinesPageDef"
+                Package="view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="initilizeNewRegLines" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="initilizeNewRegLines"
+                  IsViewObjectMethod="false"
+                  DataControl="MyLearningAMDataControl"
+                  InstanceName="MyLearningAMDataControl.dataProvider">
+      <NamedData NDName="productCode" NDValue="#{requestScope.ProductCode}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="regId" NDValue="#{pageFlowScope.regToEdit}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

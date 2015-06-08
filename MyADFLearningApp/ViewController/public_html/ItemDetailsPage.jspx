@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=windows-1252"/>
+  <f:view>
+    <af:document>
+      <af:messages/>
+      <af:form>
+        <af:pageTemplate viewId="/MyPageTemplate.jspx">
+          <f:facet name="MainPageRegion">
+            <af:panelHeader text="#{bindings.RegNum.inputValue}">
+              <f:facet name="context"/>
+              <f:facet name="menuBar"/>
+              <f:facet name="toolbar"/>
+              <f:facet name="legend"/>
+              <f:facet name="info"/>
+              <af:separator/>
+              <af:panelSplitter splitterPosition="338"
+                                inlineStyle="width:620px;">
+                <f:facet name="first">
+                  <af:panelGroupLayout layout="scroll"
+                                       xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+                    <af:panelFormLayout labelAlignment="start">
+                      <f:facet name="footer"/>
+                      <af:panelLabelAndMessage label="#{bindings.ProductCode.hints.label}">
+                        <af:outputText value="#{bindings.ProductCode.inputValue}"/>
+                      </af:panelLabelAndMessage>
+                      <af:inputText value="#{bindings.Qty.inputValue}"
+                                    label="#{bindings.Qty.hints.label}"
+                                    required="#{bindings.Qty.hints.mandatory}"
+                                    columns="#{bindings.Qty.hints.displayWidth}"
+                                    maximumLength="#{bindings.Qty.hints.precision}"
+                                    shortDesc="#{bindings.Qty.hints.tooltip}">
+                        <f:validator binding="#{bindings.Qty.validator}"/>
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.Qty.format}"/>
+                      </af:inputText>
+                      <af:panelLabelAndMessage label="#{bindings.UnitPrice.hints.label}">
+                        <af:outputText value="#{bindings.UnitPrice.inputValue}">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.UnitPrice.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                  </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                  <af:panelGroupLayout layout="scroll"
+                                       xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+                    <af:panelFormLayout labelAlignment="start">
+                      <f:facet name="footer"/>
+                      <af:panelLabelAndMessage label="#{bindings.Uom.hints.label}">
+                        <af:outputText value="#{bindings.Uom.inputValue}"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.Currency.hints.label}">
+                        <af:outputText value="#{bindings.Currency.inputValue}"/>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.Descr.hints.label}">
+                        <af:outputText value="#{bindings.Descr.inputValue}"/>
+                      </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                  </af:panelGroupLayout>
+                </f:facet>
+              </af:panelSplitter>
+            </af:panelHeader>
+          </f:facet>
+          <f:facet name="ActionButtonBarRegion">
+            <af:group>
+              <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                text="Save"
+                                disabled="#{!bindings.Commit.enabled}"
+                                action="SaveRegLine">
+                <af:setActionListener from="#{'Edit'}"
+                                      to="#{requestScope.mode}"/>
+              </af:commandButton>
+              <af:commandButton text="Cancel" action="SaveRegLine">
+                <af:setActionListener from="#{'Edit'}"
+                                      to="#{requestScope.mode}"/>
+              </af:commandButton>
+            </af:group>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

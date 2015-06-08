@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56" id="HomePagePageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="SearchPageRegistrationVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="SearchPageRegistrationVOIterator"/>
+    <searchRegion Criteria="SearchPageRegistrationVOCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="SearchPageRegistrationVOIterator"
+                  id="SearchPageRegistrationVOCriteriaQuery"
+                  InitialQueryOverridden="true"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="SearchPageRegistrationVOIterator"
+          id="SearchPageRegistrationVO">
+      <nodeDefinition DefName="model.view.SearchPageRegistrationVO">
+        <AttrNames>         
+          <Item Value="CreationDate"/>
+          <Item Value="RegNum"/>
+          <Item Value="RegStatus"/>
+          <Item Value="TotalUsdPfiAmount"/>
+          <Item Value="RegistrationId"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="SearchPageRegistrationLinesVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="model.view.SearchPageRegistrationLinesVO">
+        <AttrNames>
+          <Item Value="ProductCode"/>
+          <Item Value="Qty"/>
+          <Item Value="Uom"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

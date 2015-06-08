@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=windows-1252"/>
+  <f:view>
+    <af:document title="Cataloge Category Page">
+      <af:messages/>
+      <af:form>
+        <af:pageTemplate viewId="/MyPageTemplate.jspx">
+          <f:facet name="MainPageRegion">
+            <af:group>
+              <af:panelCollection inlineStyle="width:700px;"
+                                  id="PanelCollectionRN">
+                <f:facet name="menus"/>
+                <f:facet name="toolbar"/>
+                <f:facet name="statusbar"/>
+                <af:table rows="#{bindings.CatalogPageVO.rangeSize}"
+                          fetchSize="#{bindings.CatalogPageVO.rangeSize}"
+                          emptyText="#{bindings.CatalogPageVO.viewable ? 'No rows yet.' : 'Access Denied.'}"
+                          var="row" value="#{bindings.CatalogPageVO.treeModel}"
+                          id="CatalogTbl">
+                  <af:column headerText="#{bindings.CatalogPageVO.hints.CatalogueName.label}"
+                             sortProperty="CatalogueName" sortable="false"
+                             width="250">
+                    <af:outputText value="#{row.CatalogueName}"/>
+                  </af:column>
+                  <af:column headerText="#{bindings.CatalogPageVO.hints.Descrr.label}"
+                             sortProperty="Descrr" sortable="false" width="400">
+                    <af:outputText value="#{row.Descrr}"/>
+                  </af:column>
+                  <f:facet name="detailStamp">
+                    <af:table rows="#{bindings.CatalogPageVO.rangeSize}"
+                              emptyText="No rows yet." var="detailRow"
+                              value="#{row.children}" width="650px"
+                              id="CategoryTbl">
+                      <af:column headerText="#{row.children[0].hints.CategoryName.label}"
+                                 sortProperty="CategoryName" sortable="false"
+                                 width="200" id="CategoryNameCol">
+                        <af:commandLink actionListener="#{bindings.getItemInCategory.execute}"
+                                        text="#{detailRow.CategoryName}"
+                                        disabled="#{!bindings.getItemInCategory.enabled}"
+                                        id="CategoryNameLK"
+                                        partialSubmit="true"/>
+                      </af:column>
+                      <af:column headerText="#{row.children[0].hints.Descr.label}"
+                                 sortProperty="Descr" sortable="false"
+                                 width="400">
+                        <af:outputText value="#{detailRow.Descr}"/>
+                      </af:column>
+                    </af:table>
+                  </f:facet>
+                </af:table>
+              </af:panelCollection>
+              <af:panelBox text="Items" id="ItemPanelRN"
+                           inlineStyle="width:700px;">
+                <f:facet name="toolbar"/>
+                <af:table value="#{bindings.CatalogueCategoryItemVO.collectionModel}"
+                          var="row"
+                          rows="#{bindings.CatalogueCategoryItemVO.rangeSize}"
+                          emptyText="#{bindings.CatalogueCategoryItemVO.viewable ? 'No rows yet.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.CatalogueCategoryItemVO.rangeSize}"
+                          partialTriggers="::PanelCollectionRN:CatalogTbl:CategoryTbl:CategoryNameLK"
+                          width="650">
+                  <af:column sortProperty="ProductCode" sortable="false"
+                             headerText="#{bindings.CatalogueCategoryItemVO.hints.ProductCode.label}">
+                    <af:commandLink text="#{row.ProductCode}"
+                                    action="CreateNewLine">
+                      <af:setActionListener from="#{row.ProductCode}"
+                                            to="#{requestScope.ProductCode}"/>
+                    </af:commandLink>
+                  </af:column>
+                  <af:column sortProperty="Uom" sortable="false"
+                             headerText="#{bindings.CatalogueCategoryItemVO.hints.Uom.label}">
+                    <af:outputText value="#{row.Uom}"/>
+                  </af:column>
+                  <af:column sortProperty="UnitPrice" sortable="false"
+                             headerText="#{bindings.CatalogueCategoryItemVO.hints.UnitPrice.label}">
+                    <af:outputText value="#{row.UnitPrice}">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.CatalogueCategoryItemVO.hints.UnitPrice.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="Currency" sortable="false"
+                             headerText="#{bindings.CatalogueCategoryItemVO.hints.Currency.label}">
+                    <af:outputText value="#{row.Currency}"/>
+                  </af:column>
+                </af:table>
+              </af:panelBox>
+            </af:group>
+          </f:facet>
+          <f:facet name="ActionButtonBarRegion">
+            <af:commandButton text="Back" action="RegistrationPage">
+              <af:setActionListener from="#{'Edit'}" to="#{requestScope.mode}"/>
+              <af:setActionListener to="#{requestScope.regToEdit}"
+                                    from="#{pageFlowScope.regToEdit}"/>
+            </af:commandButton>
+          </f:facet>
+          <f:attribute name="PageTitle" value="Catalogue Category Page"/>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

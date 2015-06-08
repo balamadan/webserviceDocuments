@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.0" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="model.MyLearningAM">
+      <AppModuleConfig DeployPlatform="LOCAL" JDBCName="XE" jbo.project="model.Model" name="MyLearningAMLocal" ApplicationName="model.MyLearningAM">
+         <Security AppModuleJndiName="model.MyLearningAM"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" JDBCName="XE" jbo.project="model.Model" name="MyLearningAMShared" ApplicationName="model.MyLearningAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Security AppModuleJndiName="model.MyLearningAM"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

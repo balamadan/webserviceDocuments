@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.51.56"
+                id="Edit_Registration_Edit_Registration_FindRegistrationPageDef"
+                Package="view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="RegistrationPageVO" RangeSize="25"
+              DataControl="MyLearningAMDataControl"
+              id="RegistrationPageVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="RegistrationPageVOIterator"
+            id="setCurrentRowWithKeyValue" RequiresUpdateModel="false"
+            Action="setCurrentRowWithKeyValue">
+      <NamedData NDName="rowKey" NDValue="#{pageFlowScope.regToEdit}"
+                 NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

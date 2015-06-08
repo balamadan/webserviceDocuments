@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=windows-1252"/>
+  <f:view>
+    <af:document>
+      <af:messages/>
+      <af:form>
+        <af:pageTemplate viewId="/MyPageTemplate.jspx">
+          <f:facet name="MainPageRegion">
+            <af:group>
+              <af:panelGroupLayout layout="vertical">
+                <af:panelHeader text="Search Registration">
+                  <af:query id="qryId1" headerText="Search" disclosed="true"
+                            value="#{bindings.SearchPageRegistrationVOCriteriaQuery.queryDescriptor}"
+                            model="#{bindings.SearchPageRegistrationVOCriteriaQuery.queryModel}"
+                            queryListener="#{bindings.SearchPageRegistrationVOCriteriaQuery.processQuery}"
+                            queryOperationListener="#{bindings.SearchPageRegistrationVOCriteriaQuery.processQueryOperation}"
+                            resultComponentId="::resultTbl"/>
+                </af:panelHeader>
+              </af:panelGroupLayout>
+              <af:panelBox text="Registration List" inlineStyle="width:800%;">
+                <f:facet name="toolbar"/>
+                <af:table rows="#{bindings.SearchPageRegistrationVO.rangeSize}"
+                          fetchSize="#{bindings.SearchPageRegistrationVO.rangeSize}"
+                          emptyText="#{bindings.SearchPageRegistrationVO.viewable ? 'No rows yet.' : 'Access Denied.'}"
+                          var="row"
+                          value="#{bindings.SearchPageRegistrationVO.treeModel}"
+                          width="800" id="resultTbl">
+                  <af:column headerText="#{bindings.SearchPageRegistrationVO.hints.RegNum.label}"
+                             sortProperty="RegNum" sortable="false" width="150">
+                    <af:commandLink text="#{row.RegNum}" action="NewOrEdit">
+                      <af:setActionListener from="#{'Edit'}"
+                                            to="#{requestScope.mode}"/>
+                      <af:setActionListener to="#{requestScope.regToEdit}"
+                                            from="#{row.RegistrationId}"/>
+                      <af:setActionListener from="#{row.RegistrationId}"
+                                            to="#{RegistrationBean.regId}"/>
+                    </af:commandLink>
+                  </af:column>
+                  <af:column headerText="#{bindings.SearchPageRegistrationVO.hints.CreationDate.label}"
+                             sortProperty="CreationDate" sortable="false"
+                             width="150">
+                    <af:outputText value="#{row.CreationDate}">
+                      <af:convertDateTime pattern="#{bindings.SearchPageRegistrationVO.hints.CreationDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column headerText="#{bindings.SearchPageRegistrationVO.hints.RegStatus.label}"
+                             sortProperty="RegStatus" sortable="false"
+                             width="150">
+                    <af:outputText value="#{row.RegStatus}"/>
+                  </af:column>
+                  <af:column headerText="#{bindings.SearchPageRegistrationVO.hints.TotalUsdPfiAmount.label}"
+                             sortProperty="TotalUsdPfiAmount" sortable="false"
+                             width="150">
+                    <af:outputText value="#{row.TotalUsdPfiAmount}">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.SearchPageRegistrationVO.hints.TotalUsdPfiAmount.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <f:facet name="detailStamp">
+                    <af:table rows="#{bindings.SearchPageRegistrationVO.rangeSize}"
+                              emptyText="No rows yet." var="detailRow"
+                              value="#{row.children}">
+                      <af:column headerText="#{row.children[0].hints.ProductCode.label}"
+                                 sortProperty="ProductCode" sortable="false">
+                        <af:outputText value="#{detailRow.ProductCode}"/>
+                      </af:column>
+                      <af:column headerText="#{row.children[0].hints.Qty.label}"
+                                 sortProperty="Qty" sortable="false">
+                        <af:outputText value="#{detailRow.Qty}">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{row.children[0].hints.Qty.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column headerText="#{row.children[0].hints.Uom.label}"
+                                 sortProperty="Uom" sortable="false">
+                        <af:outputText value="#{detailRow.Uom}"/>
+                      </af:column>
+                    </af:table>
+                  </f:facet>
+                </af:table>
+              </af:panelBox>
+            </af:group>
+          </f:facet>
+          <f:facet name="ActionButtonBarRegion">
+            <af:group>
+              <af:commandButton text="New Registration" action="NewOrEdit">
+                <af:setActionListener from="#{'New'}"
+                                      to="#{requestScope.mode}"/>
+                <af:setActionListener from="#{true}"
+                                      to="#{RegistrationBean.disableAddItemBtn}"/>
+                <af:setActionListener from="#{true}"
+                                      to="#{RegistrationBean.disableSearchCataBtn}"/>
+              </af:commandButton>
+            </af:group>
+          </f:facet>
+          <f:attribute name="PageTitle" value="Home Page"/>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ItemListPageVO"
+  Version="11.1.1.51.56"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="CatalogVO1"
+    ViewObjectName="model.view.CatalogVO"/>
+  <ViewAccessor
+    Name="CategoryVO1"
+    ViewObjectName="model.view.CategoryVO"/>
+  <ListBinding
+    Name="LOV_CatalogueName"
+    ListVOName="CatalogVO1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_CatalogueName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CatalogueName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CatalogueName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CatalogueName"/>
+      <Item Value="Descrr"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CategoryName"
+    ListVOName="CategoryVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="LOV_CategoryName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CategoryName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CategoryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CategoryName"/>
+      <Item Value="Descr"/>
+    </AttrArray>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT 
+    CATALOG.CATALOGUE_ID CATALOGUE_ID, 
+    CATALOG.CATALOGUE_NAME CATALOGUE_NAME, 
+    CATALOG.DESCRR DESCRR, 
+    CATEGORY.CATEGORY_ID CATEGORY_ID, 
+    CATEGORY.CATALOGUE_ID CATALOGUE_ID1, 
+    CATEGORY.CATEGORY_NAME CATEGORY_NAME, 
+    CATEGORY.DESCR DESCR, 
+    ITEM.PRODUCT_CODE PRODUCT_CODE, 
+    ITEM.CATEGORY_ID CATEGORY_ID1, 
+    ITEM.DESCR DESCR1, 
+    ITEM.UOM UOM, 
+    ITEM.UNIT_PRICE UNIT_PRICE, 
+    ITEM.CURRENCY CURRENCY
+FROM 
+    CATALOG, 
+    CATEGORY, 
+    ITEM 
+WHERE 
+    CATEGORY.CATALOGUE_ID = CATALOG.CATALOGUE_ID AND ITEM.CATEGORY_ID = CATEGORY.CATEGORY_ID]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="CatalogueId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATALOGUE_ID"
+    Expression="CATALOGUE_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CatalogueName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CATALOGUE_NAME"
+    Expression="CATALOGUE_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_CatalogueName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Descrr"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="250"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DESCRR"
+    Expression="DESCRR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="250"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CategoryId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATEGORY_ID"
+    Expression="CATEGORY_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CatalogueId1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATALOGUE_ID1"
+    Expression="CATALOGUE_ID1"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CategoryName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CATEGORY_NAME"
+    Expression="CATEGORY_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_CategoryName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Descr"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="250"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DESCR"
+    Expression="DESCR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="250"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProductCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PRODUCT_CODE"
+    Expression="PRODUCT_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CategoryId1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATEGORY_ID1"
+    Expression="CATEGORY_ID1"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Descr1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="250"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DESCR1"
+    Expression="DESCR1"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="250"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Uom"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="UOM"
+    Expression="UOM"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="UnitPrice"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="30"
+    Scale="0"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="UNIT_PRICE"
+    Expression="UNIT_PRICE"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Currency"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="4"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CURRENCY"
+    Expression="CURRENCY"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="ItemListPageVOCriteria"
+    ViewObjectName="model.view.ItemListPageVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow22"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="CatalogueName"
+        ViewAttribute="CatalogueName"
+        Operator="STARTSWITH"
+        Conjunction="AND"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="CategoryName"
+        ViewAttribute="CategoryName"
+        Operator="STARTSWITH"
+        Conjunction="OR"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="ProductCode"
+        ViewAttribute="ProductCode"
+        Operator="STARTSWITH"
+        Conjunction="OR"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="UnitPrice"
+        ViewAttribute="UnitPrice"
+        Operator="BETWEEN"
+        Conjunction="OR"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

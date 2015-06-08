@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.0" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="model.MyLearningAM">
+      <AppModuleConfig name="11FE52DBDB8" ApplicationName="model.MyLearningAM" jbo.project="model.Model" BC4JConfigName="MyLearningAMLocal" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" JDBCName="XE">
+         <Security AppModuleJndiName="model.MyLearningAM"/>
+         <Tester FullProxyInterfaceName="model.common.MyLearningAM"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

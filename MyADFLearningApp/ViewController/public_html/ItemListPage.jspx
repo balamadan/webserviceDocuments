@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=windows-1252"/>
+  <f:view>
+    <af:document title="Item List Page">
+      <af:messages/>
+      <af:form>
+        <af:pageTemplate viewId="/MyPageTemplate.jspx">
+          <f:facet name="MainPageRegion">
+            <af:panelGroupLayout layout="vertical">
+              <af:panelHeader text="Search Item">
+                <af:query id="qryId1" headerText="Search" disclosed="true"
+                          value="#{bindings.ItemListPageVOCriteriaQuery.queryDescriptor}"
+                          model="#{bindings.ItemListPageVOCriteriaQuery.queryModel}"
+                          queryListener="#{bindings.ItemListPageVOCriteriaQuery.processQuery}"
+                          queryOperationListener="#{bindings.ItemListPageVOCriteriaQuery.processQueryOperation}"
+                          resultComponentId="::resId1"/>
+              </af:panelHeader>
+              <af:table value="#{bindings.ItemListPageVO.collectionModel}"
+                        var="row" rows="#{bindings.ItemListPageVO.rangeSize}"
+                        emptyText="#{bindings.ItemListPageVO.viewable ? 'No rows yet.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.ItemListPageVO.rangeSize}"
+                        id="resId1" width="900">
+                <af:column sortProperty="CatalogueName" sortable="false"
+                           headerText="#{bindings.ItemListPageVO.hints.CatalogueName.label}">
+                  <af:outputText value="#{row.CatalogueName}"/>
+                </af:column>
+                <af:column sortProperty="Descrr" sortable="false"
+                           headerText="#{bindings.ItemListPageVO.hints.Descrr.label}">
+                  <af:outputText value="#{row.Descrr}"/>
+                </af:column>
+                <af:column sortProperty="CategoryName" sortable="false"
+                           headerText="#{bindings.ItemListPageVO.hints.CategoryName.label}">
+                  <af:outputText value="#{row.CategoryName}"/>
+                </af:column>
+                <af:column sortProperty="Descr" sortable="false"
+                           headerText="#{bindings.ItemListPageVO.hints.Descr.label}">
+                  <af:outputText value="#{row.Descr}"/>
+                </af:column>
+                <af:column sortProperty="ProductCode" sortable="false"
+                           headerText="#{bindings.ItemListPageVO.hints.ProductCode.label}">
+                  <af:commandLink text="#{row.ProductCode}"
+                                  action="CreateNewLine">
+                    <af:setActionListener from="#{row.ProductCode}"
+                                          to="#{requestScope.ProductCode}"/>
+                  </af:commandLink>
+                </af:column>
+                <af:column sortProperty="Descr1" sortable="false"
+                           headerText="#{bindings.ItemListPageVO.hints.Descr1.label}">
+                  <af:outputText value="#{row.Descr1}"/>
+                </af:column>
+                <af:column sortProperty="UnitPrice" sortable="false"
+                           headerText="#{bindings.ItemListPageVO.hints.UnitPrice.label}">
+                  <af:outputText value="#{row.UnitPrice}">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.ItemListPageVO.hints.UnitPrice.format}"/>
+                  </af:outputText>
+                </af:column>
+              </af:table>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="ActionButtonBarRegion"/>
+          <f:attribute name="PageTitle" value="Item List Page"/>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>
