@@ -1,54 +1,53 @@
 <?xml version='1.0' encoding='windows-1252' ?>
 <!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
-<!---->
 
 <JboProject
    xmlns="http://xmlns.oracle.com/bc4j"
    Name="Model"
-   Version="11.1.1.51.56"
+   Version="11.1.2.62.76"
    SeparateXMLFiles="true"
    PackageName="model" >
    <DesignTime>
       <Attr Name="_jprName" Value="../../Model.jpr" />
+      <Attr Name="_appModuleNames0" Value="model.MyLearningAM" />
       <Attr Name="_NamedConnection" Value="HR" />
-      <Attr Name="_appModuleNames0" Value="model.MyLearningAM"/>
    </DesignTime>
    <Containee
       Name="assoc"
-      FullName="model.entity.assoc.assoc"
-      ObjectType="JboPackage" >
+      ObjectType="JboPackage"
+      PackageName="model.entity.assoc" >
       <DesignTime>
          <Attr Name="_AS" Value="true" />
       </DesignTime>
    </Containee>
    <Containee
       Name="entity"
-      FullName="model.entity.entity"
-      ObjectType="JboPackage" >
+      ObjectType="JboPackage"
+      PackageName="model.entity" >
       <DesignTime>
          <Attr Name="_EO" Value="true" />
       </DesignTime>
    </Containee>
    <Containee
       Name="model"
-      FullName="model.model"
-      ObjectType="JboPackage" >
+      ObjectType="JboPackage"
+      PackageName="model" >
       <DesignTime>
-         <Attr Name="_AM" Value="true"/>
+         <Attr Name="_AM" Value="true" />
       </DesignTime>
    </Containee>
    <Containee
       Name="link"
-      FullName="model.view.link.link"
-      ObjectType="JboPackage">
+      ObjectType="JboPackage"
+      PackageName="model.view.link" >
       <DesignTime>
-         <Attr Name="_VL" Value="true"/>
+         <Attr Name="_VL" Value="true" />
       </DesignTime>
    </Containee>
    <Containee
       Name="view"
-      FullName="model.view.view"
-      ObjectType="JboPackage" >
+      ObjectType="JboPackage"
+      PackageName="model.view" >
       <DesignTime>
          <Attr Name="_VO" Value="true" />
       </DesignTime>

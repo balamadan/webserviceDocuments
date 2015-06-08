@@ -15,9 +15,22 @@
         <param-name>oracle.adf.view.rich.versionString.HIDDEN</param-name>
         <param-value>false</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <description>Security precaution to prevent clickjacking: bust frames if the ancestor window domain(protocol, host, and port) and the frame domain are different. Another options for this parameter are always and never.</description>
+        <param-name>org.apache.myfaces.trinidad.security.FRAME_BUSTING</param-name>
+        <param-value>differentOrigin</param-value>
+    </context-param>
     <filter>
         <filter-name>JpsFilter</filter-name>
         <filter-class>oracle.security.jps.ee.http.JpsFilter</filter-class>
+        <init-param>
+            <param-name>enable.anonymous</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </filter>
     <filter>
         <filter-name>trinidad</filter-name>
@@ -29,7 +42,7 @@
     </filter>
     <filter-mapping>
         <filter-name>JpsFilter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/*</url-pattern>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
